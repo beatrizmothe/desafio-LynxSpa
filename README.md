@@ -1,7 +1,8 @@
-# Desafio Lynx SPA – Avaliação Técnica
+# Desafio Lynx SPA – Mini Aplicação de Gestão de Pedidos
 
-Mini aplicação de **Gestão de Pedidos**.  
-O projeto tem como objetivo permitir o gerenciamento de produtos, pedidos, itens de pedido e pagamentos, aplicando regras de negócio.
+Este projeto foi desenvolvido como parte de um desafio técnico para a vaga de Estágio na Lynx SPA.
+Consiste em uma mini aplicação de gestão de pedidos, com backend em ASP.NET Core,
+frontend em HTML/CSS/JavaScript e banco de dados SQLite.
 
 ---
 
@@ -14,96 +15,50 @@ O projeto tem como objetivo permitir o gerenciamento de produtos, pedidos, itens
 - SQLite
 
 ### Frontend
-- HTML5
-- CSS3
-- JavaScript
+- HTML
+- CSS
+- JavaScript (Fetch API)
 
----
-
-## Estrutura do Projeto
-
-```text
-desafio-LynxSpa/
-├── backend/    # API REST
-└── frontend/   # Aplicação Web
-```
-
----
+### Outros
+- Git e GitHub
 
 ## Funcionalidades
 
-### Backend
+### Produtos
 - Listagem de produtos com filtros opcionais
-- Listagem de pedidos resumidos
-- Detalhamento de pedidos por ID
+- Criação, edição e remoção de produtos
+- Ativação e desativação de produtos
+
+### Pedidos
 - Criação de pedidos com validações
+- Listagem de pedidos com cálculo automático do total
+- Detalhamento de pedido por ID
+- Validação de itens e produtos ativos
+
+### Pagamentos
 - Registro de pagamentos
-- Cálculo automático do total do pedido
-- Atualização do status do pedido para **PAID**
-- Tratamento de erros com mensagens claras
+- Cálculo do total pago
+- Atualização automática do status do pedido para PAID
+
+---
+
+## Como Executar o Projeto
+
+### Backend
+1. Acesse a pasta do backend
+2. Execute o comando:
+   dotnet run
+3. A API estará disponível em:
+   http://localhost:5000
+
+> Obs: A porta pode variar conforme a configuração do ambiente.
 
 ### Frontend
-- Listagem de produtos com busca
-- Filtro por categoria
-- Opção para exibir somente produtos ativos
-- Carrinho de compras em JavaScript
-- Cálculo de subtotal e total
-- Criação de pedidos via API
-- Listagem e detalhamento de pedidos
-- Validações básicas de formulário
-- Interface simples e responsiva
+1. Abra o arquivo index.html no navegador
+2. Certifique-se de que a API esteja rodando
 
----
+## Decisões Técnicas
 
-## Como Rodar o Projeto Localmente
-
-### Pré-requisitos
-- .NET SDK 6 ou superior
-- Git
-- Navegador web
-
----
-
-### Clonar o Repositório
-
-```bash
-git clone https://github.com/beatrizmothe/desafio-LynxSpa.git
-cd desafio-LynxSpa
-```
-
----
-
-### Executar o Backend (API)
-
-```bash
-cd backend
-dotnet run
-```
-
-A API será iniciada em:
-
-```text
-http://localhost:5047
-```
-
-Swagger disponível em:
-
-```text
-http://localhost:5047/swagger
-```
-
-O banco de dados **SQLite** é criado automaticamente na primeira execução.
-
----
-
-### Executar o Frontend
-
-1. Acesse a pasta `frontend`
-2. Abra o arquivo `index.html` no navegador ou utilize a extensão **Live Server** no VS Code
-
-O frontend consome a API em:
-
-```text
-http://localhost:5047
-```
-⚠️ **Importante:** o backend deve estar em execução para o frontend funcionar corretamente.
+- O backend foi desenvolvido em ASP.NET Core por ser uma tecnologia amplamente utilizada no mercado.
+- O SQLite foi escolhido por simplicidade e por atender bem ao escopo do desafio.
+- O frontend foi feito sem frameworks para manter a solução simples e alinhada ao desafio proposto.
