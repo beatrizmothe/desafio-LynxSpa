@@ -1,12 +1,13 @@
-# .NET
+# Backend (.NET)
 bin/
 obj/
 
-# Visual Studio
-.vs/
+# SQLite
+*.db
 
-# Node / Frontend
-node_modules/
+# VS / VS Code
+.vs/
+.vscode/
 
 # Sistema
 .DS_Store
