@@ -62,3 +62,15 @@ frontend em HTML/CSS/JavaScript e banco de dados SQLite.
 - O backend foi desenvolvido em ASP.NET Core por ser uma tecnologia amplamente utilizada no mercado.
 - O SQLite foi escolhido por simplicidade e por atender bem ao escopo do desafio.
 - O frontend foi feito sem frameworks para manter a solução simples e alinhada ao desafio proposto.
+
+## Como Clonar o Repositório
+
+```bash
+git clone https://github.com/beatrizmothe/desafio-LynxSpa.git
+```
+
+Acesse a pasta do projeto:
+```bash
+cd desafio-LynxSpa
+```
+
