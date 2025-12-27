@@ -99,11 +99,7 @@ O banco de dados **SQLite** é criado automaticamente na primeira execução.
 ### Executar o Frontend
 
 1. Acesse a pasta `frontend`
-2. Abra o arquivo `index.html` no navegador  
-
-ou  
-
-3. Utilize a extensão **Live Server** no VS Code
+2. Abra o arquivo `index.html` no navegador ou utilize a extensão **Live Server** no VS Code
 
 O frontend consome a API em:
 
@@ -111,4 +107,3 @@ O frontend consome a API em:
 http://localhost:5047
 ```
 ⚠️ **Importante:** o backend deve estar em execução para o frontend funcionar corretamente.
-```
