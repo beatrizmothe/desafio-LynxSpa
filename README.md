@@ -1,4 +1,3 @@
-```md
 # Desafio Lynx SPA – Avaliação Técnica
 
 Mini aplicação de **Gestão de Pedidos**.  
@@ -111,6 +110,5 @@ O frontend consome a API em:
 ```text
 http://localhost:5047
 ```
-
 ⚠️ **Importante:** o backend deve estar em execução para o frontend funcionar corretamente.
 ```
