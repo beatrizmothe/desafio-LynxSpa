@@ -1,33 +1,33 @@
+```md
 # Desafio Lynx SPA – Avaliação Técnica
 
-Mini aplicação de **Gestão de Pedidos**, desenvolvida como parte da **Avaliação Técnica da Lynx SPA** para a vaga de **Estágio**.  
-O projeto tem como objetivo demonstrar conhecimentos em **backend com API REST** e **frontend web**, atendendo aos requisitos funcionais propostos no desafio.
-
-A aplicação permite o gerenciamento de produtos, pedidos, itens de pedido e pagamentos, com regras de negócio aplicadas conforme especificação.
+Mini aplicação de **Gestão de Pedidos**.  
+O projeto tem como objetivo permitir o gerenciamento de produtos, pedidos, itens de pedido e pagamentos, aplicando regras de negócio.
 
 ---
 
 ## Tecnologias Utilizadas
 
 ### Backend
-- **C#**
-- **ASP.NET Core Web API**
-- **Entity Framework Core**
-- **SQLite**
+- C#
+- ASP.NET Core Web API
+- Entity Framework Core
+- SQLite
 
 ### Frontend
-- **HTML5**
-- **CSS3**
-- **JavaScript (Vanilla)**
+- HTML5
+- CSS3
+- JavaScript
 
 ---
 
 ## Estrutura do Projeto
 
+```text
 desafio-LynxSpa/
-├── backend/ # API REST
-└── frontend/ # Aplicação Web
-
+├── backend/    # API REST
+└── frontend/   # Aplicação Web
+```
 
 ---
 
@@ -40,14 +40,14 @@ desafio-LynxSpa/
 - Criação de pedidos com validações
 - Registro de pagamentos
 - Cálculo automático do total do pedido
-- Atualização do status do pedido para **PAID** quando aplicável
+- Atualização do status do pedido para **PAID**
 - Tratamento de erros com mensagens claras
 
 ### Frontend
 - Listagem de produtos com busca
 - Filtro por categoria
 - Opção para exibir somente produtos ativos
-- Carrinho de compras local em JavaScript
+- Carrinho de compras em JavaScript
 - Cálculo de subtotal e total
 - Criação de pedidos via API
 - Listagem e detalhamento de pedidos
@@ -65,46 +65,52 @@ desafio-LynxSpa/
 
 ---
 
-### Clone o repositório
+### Clonar o Repositório
+
 ```bash
 git clone https://github.com/beatrizmothe/desafio-LynxSpa.git
 cd desafio-LynxSpa
+```
 
-Executar o Backend (API)
+---
 
-Acesse a pasta do backend:
+### Executar o Backend (API)
 
+```bash
 cd backend
-
-
-Execute a aplicação:
-
 dotnet run
-
+```
 
 A API será iniciada em:
 
+```text
 http://localhost:5047
-
+```
 
 Swagger disponível em:
 
+```text
 http://localhost:5047/swagger
+```
 
+O banco de dados **SQLite** é criado automaticamente na primeira execução.
 
-O banco de dados SQLite é criado automaticamente na primeira execução.
+---
 
-Executar o Frontend
+### Executar o Frontend
 
-Acesse a pasta frontend
+1. Acesse a pasta `frontend`
+2. Abra o arquivo `index.html` no navegador  
 
-Abra o arquivo index.html diretamente no navegador
-ou utilize a extensão Live Server no VS Code
+ou  
 
-O frontend consome a API rodando localmente em:
+3. Utilize a extensão **Live Server** no VS Code
 
+O frontend consome a API em:
+
+```text
 http://localhost:5047
+```
 
-
-⚠️ O backend deve estar em execução para o frontend funcionar corretamente.
-
+⚠️ **Importante:** o backend deve estar em execução para o frontend funcionar corretamente.
+```
