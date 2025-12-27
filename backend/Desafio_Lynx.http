@@ -1,0 +1,6 @@
+@Desafio_Lynx_HostAddress = http://localhost:5047
+
+GET {{Desafio_Lynx_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

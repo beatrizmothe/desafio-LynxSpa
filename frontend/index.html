@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Produtos</title>
+    <link rel="icon" href="icon.jpg">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>Produtos</h1>
+
+    <div class="filters">
+        <input type="text" id="search" placeholder="Buscar produto">
+
+        <select id="categoryFilter">
+            <option value="">Todas as categorias</option>
+        </select>
+
+        <label>
+            <input type="checkbox" id="onlyActive">
+            Somente ativos
+        </label>
+    </div>
+
+    <div id="products"></div>
+
+    <h2>Carrinho</h2>
+    <ul id="cart"></ul>
+
+    <p>
+        <strong>Total:</strong>
+        R$ <span id="total">0.00</span>
+    </p>
+
+    <button onclick="finalizarPedido()">Finalizar Pedido</button>
+
+    <a href="pedidos.html" class="btn-pedidos">Ver pedidos</a>
+
+    <p id="orderResult"></p>
+
+    <script src="app.js"></script>
+</body>
+</html>
