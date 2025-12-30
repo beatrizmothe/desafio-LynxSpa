@@ -1,5 +1,6 @@
 ﻿using Desafio_Lynx.Data;
 using Desafio_Lynx.Models;
+using Desafio_Lynx.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,7 +17,7 @@ namespace Desafio_Lynx.Controllers
             _context = context;
         }
 
-        // Lista pedidos com total calculado
+        // GET / orders
         [HttpGet]
         public IActionResult GetOrders()
         {
@@ -27,7 +28,6 @@ namespace Desafio_Lynx.Controllers
                     o.Id,
                     o.Status,
                     o.Created_At,
-                    // total = quantidade * preço de cada item
                     Total = o.Items.Sum(i => i.Quantity * i.Unit_Price_Cents)
                 })
                 .ToList();
@@ -35,7 +35,7 @@ namespace Desafio_Lynx.Controllers
             return Ok(orders);
         }
 
-        // Retorna um pedido específico
+        // GET / orders {id}
         [HttpGet("{id}")]
         public IActionResult GetOrder(int id)
         {
@@ -44,50 +44,52 @@ namespace Desafio_Lynx.Controllers
                 .FirstOrDefault(o => o.Id == id);
 
             if (order == null)
-                return NotFound($"Pedido {id} não encontrado.");
-
-            var total = order.Items.Sum(i => i.Quantity * i.Unit_Price_Cents);
+                return NotFound();
 
             return Ok(new
             {
                 order.Id,
                 order.Status,
                 order.Created_At,
-                Items = order.Items,
-                Total = total
+                Items = order.Items.Select(i => new
+                {
+                    i.ProductId,
+                    i.Quantity,
+                    i.Unit_Price_Cents
+                }),
+                Total = order.Items.Sum(i => i.Quantity * i.Unit_Price_Cents)
             });
         }
 
-        // Cria um novo pedido
+        // POST / orders
         [HttpPost]
-        public IActionResult CreateOrder([FromBody] Order order)
+        public IActionResult CreateOrder([FromBody] CreateOrderRequest request)
         {
-            // Se não tiver itens, retorna erro
-            if (order.Items == null || !order.Items.Any())
-                return BadRequest("O pedido precisa ter pelo menos um item.");
+            if (request.Items == null || !request.Items.Any())
+                return BadRequest();
 
-            order.Status = "NEW";
-            order.Created_At = DateTime.UtcNow;
-
-            // salva o pedido primeiro para gerar o Id
-            _context.Orders.Add(order);
-            _context.SaveChanges();
-
-            foreach (var item in order.Items)
+            var order = new Order
             {
-                var product = _context.Products.FirstOrDefault(p => p.Id == item.Product_Id);
+                Status = "NEW",
+                Created_At = DateTime.UtcNow
+            };
 
-                if (product == null)
-                    return BadRequest($"Produto {item.Product_Id} não encontrado.");
+            foreach (var item in request.Items)
+            {
+                var product = _context.Products.FirstOrDefault(p => p.Id == item.ProductId);
 
-                if (!product.Active)
-                    return BadRequest($"Produto {product.Name} inativo.");
+                if (product == null || !product.Active)
+                    return BadRequest();
 
-                item.Order_Id = order.Id;
-                item.Unit_Price_Cents = product.PriceCents;
+                order.Items.Add(new OrderItem
+                {
+                    ProductId = item.ProductId,
+                    Quantity = item.Quantity,
+                    Unit_Price_Cents = product.PriceCents
+                });
             }
 
-            _context.OrderItems.AddRange(order.Items);
+            _context.Orders.Add(order);
             _context.SaveChanges();
 
             return CreatedAtAction(nameof(GetOrder), new { id = order.Id }, new

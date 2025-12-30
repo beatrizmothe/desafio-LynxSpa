@@ -10,6 +10,6 @@ namespace Desafio_Lynx.Models
         public string? Status { get; set; }
         public DateTime Created_At { get; set; }
 
-        public List<OrderItem> Items { get; set; }
+        public List<OrderItem> Items { get; set; } = new();
     }
 }

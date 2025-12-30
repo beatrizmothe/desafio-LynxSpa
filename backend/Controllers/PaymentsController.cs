@@ -16,21 +16,22 @@ namespace Desafio_Lynx.Controllers
             _context = context;
         }
 
+        // POST / payments
         [HttpPost]
         public IActionResult CreatePayment([FromBody] Payment payment)
         {
-            // Busca o pedido
             var order = _context.Orders
                 .Include(o => o.Items)
                 .FirstOrDefault(o => o.Id == payment.Order_Id);
 
-            if (order == null)
-                return BadRequest($"Pedido {payment.Order_Id} não encontrado.");
+            if (order == null || order.Status == "PAID")
+                return BadRequest();
 
-            // Total do pedido
+            if (payment.Amount_Cents <= 0)
+                return BadRequest();
+
             var orderTotal = order.Items.Sum(i => i.Quantity * i.Unit_Price_Cents);
 
-            // Soma pagamentos já feitos
             var totalPaid = _context.Payments
                 .Where(p => p.Order_Id == order.Id)
                 .Sum(p => p.Amount_Cents);
@@ -40,7 +41,6 @@ namespace Desafio_Lynx.Controllers
             payment.Paid_At = DateTime.UtcNow;
             _context.Payments.Add(payment);
 
-            // Marca como pago se atingir o total
             if (newTotalPaid >= orderTotal)
                 order.Status = "PAID";
 
