@@ -18,7 +18,7 @@ namespace Desafio_Lynx.Controllers
 
         // POST / payments
         [HttpPost]
-        public IActionResult CreatePayment([FromBody] Payment payment)
+        public IActionResult CreatePayment([FromBody] CreatePaymentRequest request)
         {
             var order = _context.Orders
                 .Include(o => o.Items)
