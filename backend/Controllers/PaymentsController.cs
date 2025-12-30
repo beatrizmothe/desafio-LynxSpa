@@ -22,12 +22,12 @@ namespace Desafio_Lynx.Controllers
         {
             var order = _context.Orders
                 .Include(o => o.Items)
-                .FirstOrDefault(o => o.Id == payment.Order_Id);
+                .FirstOrDefault(o => o.Id == request.Order_Id);
 
             if (order == null || order.Status == "PAID")
                 return BadRequest();
 
-            if (payment.Amount_Cents <= 0)
+            if (request.Amount_Cents <= 0)
                 return BadRequest();
 
             var orderTotal = order.Items.Sum(i => i.Quantity * i.Unit_Price_Cents);
@@ -36,9 +36,16 @@ namespace Desafio_Lynx.Controllers
                 .Where(p => p.Order_Id == order.Id)
                 .Sum(p => p.Amount_Cents);
 
-            var newTotalPaid = totalPaid + payment.Amount_Cents;
+            var newTotalPaid = totalPaid + request.Amount_Cents;
 
-            payment.Paid_At = DateTime.UtcNow;
+             var payment = new Payment
+            {
+                Order_Id = request.Order_Id,
+                Amount_Cents = request.Amount_Cents,
+                Payment_Method = request.Payment_Method,
+                Paid_At = DateTime.UtcNow
+            };
+            
             _context.Payments.Add(payment);
 
             if (newTotalPaid >= orderTotal)
